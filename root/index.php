@@ -3,13 +3,10 @@
 error_reporting( E_ALL );
 ini_set( 'log_errors', 1 );
 
-var_dump($_POST);
-die;
-
 // Dateien einbinden
 require_once __DIR__ . '/../vendor/autoload.php';
-include_once __DIR__ . '/../ControllerProviders/GuestbookControllerProvider.php';
-include_once __DIR__ . '/../ControllerProviders/AdminpanelControllerProvider.php';
+include_once __DIR__ . '/../ControllerProvider/BookingControllerProvider.php';
+//include_once __DIR__ . '/../ControllerProvider/AdminpanelControllerProvider.php';
 
 $app = new Silex\Application();
 
@@ -38,7 +35,7 @@ $app->register( new Silex\Provider\DoctrineServiceProvider(), array(
 $app['debug'] = TRUE;
 
 $app->mount( '/bks', new Booking\BookingControllerProvider() );
-$app->mount( '/ap', new Adminpanel\AdminpanelControllerProvider() );
+//$app->mount( '/ap', new Adminpanel\AdminpanelControllerProvider() );
 
 $app['session.storage.options'] = array(
     'lifetime' => 1800
@@ -59,9 +56,6 @@ $app->before( function () use ( $app )
         return $app->redirect( $app['url_generator']->generate( 'login' ) );
     }
 } );
-
-// Mail Encoding auf UTF-8 setzen
-mb_internal_encoding( "UTF-8" );
 
 // Loginsession starten
 $app['session']->start();
