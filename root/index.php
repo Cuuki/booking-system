@@ -3,6 +3,9 @@
 error_reporting( E_ALL );
 ini_set( 'log_errors', 1 );
 
+var_dump($_POST);
+die;
+
 // Dateien einbinden
 require_once __DIR__ . '/../vendor/autoload.php';
 include_once __DIR__ . '/../ControllerProviders/GuestbookControllerProvider.php';

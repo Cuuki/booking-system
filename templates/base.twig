@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link href="{{base_url}}/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{base_url}}/css/ripples.min.css" rel="stylesheet">
+        <link href="{{base_url}}/css/material-wfont.min.css" rel="stylesheet">
+        <link href="{{base_url}}/css/offcanvas.css" rel="stylesheet">
+        <link href="{{base_url}}/css/affix.css" rel="stylesheet">
+        <link href="{{base_url}}/css/custom.min.css" rel="stylesheet">
+       <!--[if lt IE 9]>
+            <script src="{{base_url}}/js/html5shiv.js"></script>
+            <script src="{{base_url}}/js/respond.min.js"></script>
+        <![endif]--> 
+        {% block head %}
+            {% block title %}{% endblock %}
+            {% block css %}{% endblock %}
+            {% block script %}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+        {% block header %}{% endblock %}            
+        </div>
+        <div class="container-fluid">
+        {% block content %}{% endblock %}
+        </div>
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="{{base_url}}/js/material.min.js"></script>
+        <script src="{{base_url}}/js/ripples.js"></script>        
+        <script src="{{base_url}}/js/offcanvas.js"></script>
+        <script>
+            $.material.init();
+            
+            $('#sidebar').affix({
+                offset: {
+                    top: $('#header').height()
+                }  
+            });
+            
+            $('#advanced-reset-btn').click( function() { 
+                $('#guestbookform').find(':input').each(function() {
+                    switch( this.type ) {
+                        case 'text':
+                        case 'email':
+                        case 'textarea':
+                            $(this).val('');
+                    }
+                });              
+            });               
+        </script>
+    </body>
+</html>
