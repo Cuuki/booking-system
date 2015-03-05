@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `mietvertrag` (
   `id_mietvertrag` int(11) NOT NULL AUTO_INCREMENT,
-  `beginn` datetime NOT NULL,
-  `ende` datetime NOT NULL,
+  `beginn` date NOT NULL,
+  `ende` date NOT NULL,
   `id_ferienhaus` int(11) NOT NULL,
   `id_kunde` int(11) NOT NULL,
   PRIMARY KEY (`id_mietvertrag`),
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `mietvertrag` (
 --
 
 INSERT INTO `mietvertrag` (`id_mietvertrag`, `beginn`, `ende`, `id_ferienhaus`, `id_kunde`) VALUES
-(1, '2015-03-20 00:00:00', '2015-11-17 00:00:00', 1, 1);
+(1, '2015-03-20', '2015-11-17', 1, 1);
 
 --
 -- Constraints for dumped tables

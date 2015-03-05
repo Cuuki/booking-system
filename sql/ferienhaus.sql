@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS `ferienhaus` (
   `betten` int(11) NOT NULL,
   `schlafzimmer` int(11) NOT NULL,
   `bezeichnung` varchar(255) NOT NULL,
-  `verfuegbar_anfang` datetime NOT NULL,
-  `verfuegbar_ende` datetime NOT NULL,
+  `verfuegbar_anfang` date NOT NULL,
+  `verfuegbar_ende` date NOT NULL,
   `preis` float NOT NULL,
   PRIMARY KEY (`id_ferienhaus`),
   UNIQUE KEY `id_ferienhaus_UNIQUE` (`id_ferienhaus`),
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `ferienhaus` (
 --
 
 INSERT INTO `ferienhaus` (`id_ferienhaus`, `objekt_plz`, `objekt_adresse`, `eigentuemer_plz`, `eigentuemer_adresse`, `betten`, `schlafzimmer`, `bezeichnung`, `verfuegbar_anfang`, `verfuegbar_ende`, `preis`) VALUES
-(1, 12345, 'Test 1', 54321, 'Test 2', 10, 5, 'Testbezeichnung', '2015-03-18 00:00:00', '2015-11-18 00:00:00', 312.55);
+(1, 12345, 'Test 1', 54321, 'Test 2', 10, 5, 'Testbezeichnung', '2015-03-18', '2015-11-18', 312.55);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

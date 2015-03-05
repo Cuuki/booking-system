@@ -9,19 +9,23 @@ $postdata = array(
     'gaeste' => $gaeste->get( 'gaeste' )
 );
 
-//in mietvertrag speichern
-$postdata['beginn'];
-$postdata['ende'];
-
-$select = 'SELECT bezeichnung, schlafzimmer, betten, objekt_plz, objekt_adresse '
+$select = 'SELECT bezeichnung, schlafzimmer, betten, preis, objekt_plz, '
+            . 'objekt_adresse, verfuegbar_anfang, verfuegbar_ende '
         . 'FROM ferienhaus '
         . 'INNER JOIN standort '
-        . 'ON ferienhaus.id_ferienhaus = standort.id_ferienhaus '
+            . 'ON ferienhaus.id_ferienhaus = standort.id_ferienhaus '
         . 'WHERE region LIKE CONCAT( "%", SUBSTRING(?, 1,4), "%" ) '
-        . 'OR ort LIKE CONCAT( "%", SUBSTRING(?, 1,2), "%" )';
+            . 'OR ort LIKE CONCAT( "%", SUBSTRING(?, 1,2), "%" ) '
+            . 'AND ? BETWEEN verfuegbar_anfang AND verfuegbar_ende '
+            . 'AND ? BETWEEN verfuegbar_anfang AND verfuegbar_ende '
+            . 'AND schlafzimmer >= ?';
 
 $searchResults = $app['db']->fetchAssoc( $select, array(
-    $postdata['standort'], $postdata['standort']
+    $postdata['standort'],
+    $postdata['standort'],
+    $postdata['beginn'],
+    $postdata['ende'],
+    $postdata['gaeste']
 ) );
 
 if ( !$searchResults )

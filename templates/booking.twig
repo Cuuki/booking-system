@@ -31,7 +31,7 @@
                             <div class="form-group home-form">
                                 <label for="standort" class="control-label home-label">Region/Ort</label>
                                 <div class="form-control-wrapper">
-                                    <input type="text" id="standort" name="standort"class="form-control text-center" placeholder="Wohin?">
+                                    <input type="text" id="standort" name="standort"class="form-control text-center" required placeholder="Wohin?">
                                 </div>
                             </div>
                         </div>            
@@ -39,7 +39,7 @@
                             <div class="form-group home-form">
                                 <div class="form-control-wrapper">
                                     <label for="beginn" class="control-label home-label">Check-In</label>
-                                    <input type="date" id="beginn" name="beginn" class="form-control text-center" placeholder="Check-In">
+                                    <input type="date" id="beginn" name="beginn" class="form-control text-center" required placeholder="Check-In">
                                 </div>
                             </div>                
                         </div>        
@@ -47,7 +47,7 @@
                             <div class="form-group home-form">
                                 <div class="form-control-wrapper">                
                                     <label for="ende" class="control-label home-label">Check-Out</label>
-                                    <input type="date" id="ende" name="ende" class="form-control text-center" placeholder="Check-Out">
+                                    <input type="date" id="ende" name="ende" class="form-control text-center" required placeholder="Check-Out">
                                 </div>
                             </div>                
                         </div>
@@ -55,7 +55,7 @@
                             <div class="form-group home-form">
                                 <div class="form-control-wrapper">                
                                     <label for="gaeste" class="control-label home-label">Gäste</label>
-                                    <input id="gaeste" type="number" name="gaeste" class="form-control text-center" placeholder="Anzahl">
+                                    <input id="gaeste" type="number" name="gaeste" class="form-control text-center" required placeholder="Anzahl">
                                 </div>
                             </div>                
                         </div>                             
@@ -82,8 +82,10 @@
             <li>Bezeichnung: {{ output.bezeichnung }}</li>
             <li>Anzahl Schlafzimmer: {{ output.schlafzimmer }}</li>
             <li>Anzahl Betten: {{ output.betten }}</li>
+            <li>Preis: {{output.preis}}€</li>
             <li>PLZ: {{ output.objekt_plz }}</li>
             <li>Adresse: {{ output.objekt_adresse }}</li>
+            <li>Verfügbar von {{output.verfuegbar_anfang}} bis {{output.verfuegbar_ende}}</li>            
         </ul>
         {% endif %}
     </div>
