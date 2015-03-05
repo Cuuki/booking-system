@@ -20,7 +20,7 @@ class BookingControllerProvider implements ControllerProviderInterface
             return include_once BOOKING_DIR . '/processing/get/booking.php';
         } )->bind( 'guestbook' );
 
-        $controllers->post( '/', function ( Request $standort, Request $beginn, Request $ende, Request $gaeste ) use ( $app )
+        $controllers->post( '/', function ( Request $region, Request $ort, Request $beginn, Request $ende, Request $gaeste ) use ( $app )
         {   
             return include_once BOOKING_DIR . '/processing/post/booking.php';
         } );

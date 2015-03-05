@@ -29,17 +29,25 @@
                     <form  action="" method="post" class="form-horizontal">
                         <div class="col-sm-2 col-sm-offset-1">
                             <div class="form-group home-form">
-                                <label for="standort" class="control-label home-label">Region/Ort</label>
+                                <label for="region" class="control-label home-label">Region</label>
                                 <div class="form-control-wrapper">
-                                    <input type="text" id="standort" name="standort"class="form-control text-center" required placeholder="Wohin?">
+                                    <input type="text" id="region" name="region" class="form-control text-center" value="{%if value is defined%}{{value.region}}{%endif%}" required placeholder="Welches Land?">
                                 </div>
                             </div>
-                        </div>            
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group home-form">
+                                <label for="ort" class="control-label home-label">Ort</label>
+                                <div class="form-control-wrapper">
+                                    <input type="text" id="ort" name="ort" class="form-control text-center" value="{%if value is defined%}{{value.ort}}{%endif%}" required placeholder="Welche Stadt?">
+                                </div>
+                            </div>
+                        </div>                        
                         <div class="col-sm-2">
                             <div class="form-group home-form">
                                 <div class="form-control-wrapper">
                                     <label for="beginn" class="control-label home-label">Check-In</label>
-                                    <input type="date" id="beginn" name="beginn" class="form-control text-center" required placeholder="Check-In">
+                                    <input type="date" id="beginn" name="beginn" class="form-control text-center" value="{%if value is defined%}{{value.beginn}}{%endif%}" required placeholder="Check-In">
                                 </div>
                             </div>                
                         </div>        
@@ -47,19 +55,19 @@
                             <div class="form-group home-form">
                                 <div class="form-control-wrapper">                
                                     <label for="ende" class="control-label home-label">Check-Out</label>
-                                    <input type="date" id="ende" name="ende" class="form-control text-center" required placeholder="Check-Out">
+                                    <input type="date" id="ende" name="ende" class="form-control text-center" value="{%if value is defined%}{{value.ende}}{%endif%}" required placeholder="Check-Out">
                                 </div>
                             </div>                
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             <div class="form-group home-form">
                                 <div class="form-control-wrapper">                
                                     <label for="gaeste" class="control-label home-label">Gäste</label>
-                                    <input id="gaeste" type="number" name="gaeste" class="form-control text-center" required placeholder="Anzahl">
+                                    <input id="gaeste" type="number" name="gaeste" class="form-control text-center" value="{%if value is defined%}{{value.gaeste}}{%endif%}" required placeholder="Anzahl">
                                 </div>
                             </div>                
                         </div>                             
-                        <div class="col-sm-2">            
+                        <div class="col-sm-1">            
                             <div class="form-group home-form">
                                 <button  id="home-button" class="btn btn-primary" type="submit">Suche</button>
                             </div>
@@ -71,22 +79,26 @@
     </div>
 </div>
 <div class="row">    
-    <div class="col-lg-12">
+    <div class="col-lg-4 col-lg-offset-4">
         {% if message is defined %}
-        <p class="alert alert-dismissable alert-danger text-center">
-            <strong>{{message}}</strong>
-        </p>
+        <section class="well">
+            <p class="alert alert-dismissable alert-danger text-center">
+                <strong>{{message}}</strong>
+            </p>
+        </section>
         {% endif %}
         {% if output is defined and output != false %}
-        <ul>
-            <li>Bezeichnung: {{ output.bezeichnung }}</li>
-            <li>Anzahl Schlafzimmer: {{ output.schlafzimmer }}</li>
-            <li>Anzahl Betten: {{ output.betten }}</li>
-            <li>Preis: {{output.preis}}€</li>
-            <li>PLZ: {{ output.objekt_plz }}</li>
-            <li>Adresse: {{ output.objekt_adresse }}</li>
-            <li>Verfügbar von {{output.verfuegbar_anfang}} bis {{output.verfuegbar_ende}}</li>            
-        </ul>
+        <section class="well">        
+            <p>
+                <strong>{{ output.bezeichnung }}</strong>
+            </p>
+            <p>Anzahl Schlafzimmer: {{ output.schlafzimmer }}</p>
+            <p>Anzahl Betten: {{ output.betten }}</p>
+            <p>Preis: {{output.preis}}€</p>
+            <p>PLZ: {{ output.objekt_plz }}</p>
+            <p>Adresse: {{ output.objekt_adresse }}</p>
+            <p>Verfügbar von {{output.verfuegbar_anfang}} bis {{output.verfuegbar_ende}}</p>
+        </section>
         {% endif %}
     </div>
 </div>
