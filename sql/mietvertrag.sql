@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2015 at 10:12 AM
+-- Generation Time: Mar 05, 2015 at 05:03 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `mietvertrag` (
   `id_kunde` int(11) NOT NULL,
   PRIMARY KEY (`id_mietvertrag`),
   UNIQUE KEY `id_mietvertrag_UNIQUE` (`id_mietvertrag`),
-  KEY `fk_mietvertrag_ferienhaus1_idx` (`id_ferienhaus`),
-  KEY `fk_mietvertrag_kunde1_idx` (`id_kunde`)
+  KEY `fk_miervertrag_ferienhaus1_idx` (`id_ferienhaus`),
+  KEY `fk_miervertrag_kunde1_idx` (`id_kunde`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `mietvertrag` (
 --
 
 INSERT INTO `mietvertrag` (`id_mietvertrag`, `beginn`, `ende`, `id_ferienhaus`, `id_kunde`) VALUES
-(1, '2015-03-20', '2015-11-17', 1, 1);
+(1, '2015-03-08', '2015-03-12', 1, 1);
 
 --
 -- Constraints for dumped tables
@@ -53,8 +53,8 @@ INSERT INTO `mietvertrag` (`id_mietvertrag`, `beginn`, `ende`, `id_ferienhaus`, 
 -- Constraints for table `mietvertrag`
 --
 ALTER TABLE `mietvertrag`
-  ADD CONSTRAINT `fk_mietvertrag_ferienhaus1` FOREIGN KEY (`id_ferienhaus`) REFERENCES `ferienhaus` (`id_ferienhaus`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_mietvertrag_kunde1` FOREIGN KEY (`id_kunde`) REFERENCES `kunde` (`id_kunde`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_miervertrag_ferienhaus1` FOREIGN KEY (`id_ferienhaus`) REFERENCES `ferienhaus` (`id_ferienhaus`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_miervertrag_kunde1` FOREIGN KEY (`id_kunde`) REFERENCES `kunde` (`id_kunde`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

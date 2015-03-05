@@ -23,27 +23,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `eigentuemer_adresse`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `passwort` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_admin`),
-  UNIQUE KEY `id_admin_UNIQUE` (`id_admin`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
+CREATE TABLE IF NOT EXISTS `eigentuemer_adresse` (
+  `id_eigentuemer_adresse` int(11) NOT NULL AUTO_INCREMENT,
+  `plz` int(11) NOT NULL,
+  `ort` varchar(255) NOT NULL,
+  `straße` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_eigentuemer_adresse`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `admin`
+-- Dumping data for table `eigentuemer_adresse`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `email`, `passwort`) VALUES
-(1, 'sudo', 'sudo@example.de', 'sudo'),
-(2, 'adm', 'adm@example.de', 'adm');
+INSERT INTO `eigentuemer_adresse` (`id_eigentuemer_adresse`, `plz`, `ort`, `straße`) VALUES
+(1, 91341, 'Röttenbach', 'Am Goldberg 10'),
+(2, 91052, 'Erlangen', 'Nägelsbachstraße 33');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

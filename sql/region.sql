@@ -23,27 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `region`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `passwort` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_admin`),
-  UNIQUE KEY `id_admin_UNIQUE` (`id_admin`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+CREATE TABLE IF NOT EXISTS `region` (
+  `id_region` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_region`),
+  UNIQUE KEY `id_standort_UNIQUE` (`id_region`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `admin`
+-- Dumping data for table `region`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `email`, `passwort`) VALUES
-(1, 'sudo', 'sudo@example.de', 'sudo'),
-(2, 'adm', 'adm@example.de', 'adm');
+INSERT INTO `region` (`id_region`, `name`) VALUES
+(1, 'Deutschland');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2015 at 10:12 AM
+-- Generation Time: Mar 05, 2015 at 05:03 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `maengelanzeige` (
 --
 
 INSERT INTO `maengelanzeige` (`id_maengel`, `beschreibung`, `meldedatum`, `id_kunde`) VALUES
-(1, 'Das Bett war kaputt.', '2015-03-05 09:05:08', 1);
+(1, 'Alles kacke hier!', '2015-03-05 15:58:05', 1);
 
 --
 -- Constraints for dumped tables
