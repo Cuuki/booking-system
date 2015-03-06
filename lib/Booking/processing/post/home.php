@@ -20,6 +20,7 @@ if( !empty( $invalidInput ) )
 {
     return new Response( $app['twig']->render( 'home.twig', array(
         'errormessages' => getErrormessages( $invalidInput ),
+        'description' => 'Hier können Sie Ferienhäuser anhand der eingegebenen Regionen oder Orte finden.',
         'value' => $postdata
     ) ), 404 );
 }
@@ -30,11 +31,13 @@ if ( !$searchResults )
 {
     return new Response( $app['twig']->render( 'home.twig', array(
         'message' => 'Keine Ergebnisse gefunden.',
+        'description' => 'Hier können Sie Ferienhäuser anhand der eingegebenen Regionen oder Orte finden.',
         'value' => $postdata
     ) ), 404 );
 }
 
 return new Response( $app['twig']->render( 'home.twig', array(
     'output' => $searchResults,
+    'description' => 'Hier können Sie Ferienhäuser anhand der eingegebenen Regionen oder Orte finden.',
     'value' => $postdata
 ) ), 201 );

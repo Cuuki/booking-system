@@ -7,22 +7,9 @@
 {% endblock %}
 
 {% block header %}
+{% include "header.twig" %}
 <div class="row">
-    <a href="javascript:void(0)">
-        <img src="{{base_url}}/img/logo.png" id="logo" class="col-sm-2 col-xs-4">
-    </a>
-</div>
-<div id="header" class="row text-center">    
-    <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-        <h1 class="">
-            <strong>Willkommen bei HOLIDAYROOMS!</strong>
-        </h1>
-        <h3>Ihr kompetenter Partner für Ferienhaus-Anmietungen</h3>
-        <h4>Hier können Sie Ferienhäuser anhand der eingegebenen Regionen oder Orte finden.</h4>
-    </div>
-</div>
-<div class="row">
-    <div id="search-form" class="col-xs-12">
+    <div class="col-xs-12 col-wrapper">
         <section id="home-well" class="well">
             <fieldset id="home-form">        
                 <form  action="" method="post" class="form-horizontal">
@@ -62,8 +49,8 @@
                         <div class="form-group home-form">
                             <div class="form-control-wrapper">                
                                 <label for="gaeste" class="control-label home-label">Gäste</label>
-                                <input id="gaeste" type="text" name="gaeste" class="form-control text-center" value="{%if value is defined%}{{value.gaeste}}{%endif%}" placeholder="Anzahl">
-                            </div><!--number-->
+                                <input id="gaeste" type="number" name="gaeste" class="form-control text-center" value="{%if value is defined%}{{value.gaeste}}{%endif%}" placeholder="Anzahl">
+                            </div>
                         </div>                
                     </div>                         
                     <div class="col-md-1">            
@@ -79,7 +66,7 @@
 {% endblock %}
 {% block content %}
 <div class="row">    
-    <div class="col-lg-12">
+    <div class="col-lg-12 col-wrapper">
         {% if errormessages is defined and errormessages is not null %}
         <section class="well text-center">
             <div class="row">

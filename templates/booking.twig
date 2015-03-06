@@ -1,0 +1,132 @@
+{% extends "base.twig" %}
+
+{% block head %}
+    {% block title %}
+        <title>Booking - HOLIDAYROOMS</title>
+    {% endblock %}
+{% endblock %}
+
+{% block header %}
+{% include "header.twig" %}
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <section id="home-well" class="well">
+            <fieldset id="booking-form">        
+                <form  action="" method="post" class="form-horizontal">
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="firstname" class="control-label booking-label">Vorname</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="firstname" name="firstname" class="form-control text-center" value="{%if value is defined%}{{value.firstname}}{%endif%}" placeholder="Vorname">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.firstname is defined %}
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.firstname}}</strong>
+                            </p>          
+                            {% endif %}
+                        {% endif %}                             
+                        </div>
+                    </div>                      
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="lastname" class="control-label booking-label">Nachname</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="lastname" name="lastname" class="form-control text-center" value="{%if value is defined%}{{value.lastname}}{%endif%}" placeholder="Nachname">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.lastname is defined %}    
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.lastname}}</strong>
+                            </p>            
+                            {% endif %}  
+                        {% endif %}                              
+                        </div>
+                    </div>                       
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <div class="form-control-wrapper">
+                                <label for="email" class="control-label booking-label">E-Mail</label>
+                                <input type="email" id="email" name="email" class="form-control text-center" value="{%if value is defined%}{{value.email}}{%endif%}" placeholder="E-Mail">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.email is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.email}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                              
+                        </div>                
+                    </div>     
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <div class="form-control-wrapper">                
+                                <label for="plz" class="control-label booking-label">Postleitzahl</label>
+                                <input id="plz" type="number" name="plz" class="form-control text-center" value="{%if value is defined%}{{value.plz}}{%endif%}" placeholder="PLZ">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.plz is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.plz}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                             
+                        </div>                
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="ort" class="control-label booking-label">Ort</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="ort" name="ort" class="form-control text-center" value="{%if value is defined%}{{value.ort}}{%endif%}" placeholder="Ort / Stadt">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.ort is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.ort}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                            
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="straße" class="control-label booking-label">Straße</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="straße" name="straße" class="form-control text-center" value="{%if value is defined%}{{value.straße}}{%endif%}" placeholder="Straße & Hausnr.">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.straße is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.straße}}</strong>
+                            </p>
+                            {% endif %}                
+                        {% endif %}
+                        </div>
+                    </div>                      
+                    <div class="col-md-1">            
+                        <div class="form-group booking-form">
+                            <button  id="home-button" class="btn btn-primary" type="submit">Suche</button>
+                        </div>
+                    </div>
+                </form>
+                {% if message is defined %}
+                <p class="{{message_class}}">
+                    <strong>{{message}}</strong>
+                </p>
+                {% endif %}                
+            </fieldset> 
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
