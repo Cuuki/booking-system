@@ -105,16 +105,16 @@
                     </div>                      
                     <div class="col-md-1">            
                         <div class="form-group booking-form">
-                            <button  id="home-button" class="btn btn-primary" type="submit">Suche</button>
+                            <button  id="home-button" class="btn btn-primary" type="submit">Buchen</button>
                         </div>
                     </div>
-                </form>
-                {% if message is defined %}
-                <p class="{{message_class}}">
-                    <strong>{{message}}</strong>
-                </p>
-                {% endif %}                
-            </fieldset> 
+                </form>           
+            </fieldset>
+            {% if message is defined %}
+            <p class="{{message_class}}">
+                <strong>{{message}}</strong>
+            </p>
+            {% endif %}
         </section>
     </div>
 </div>

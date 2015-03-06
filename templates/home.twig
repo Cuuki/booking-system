@@ -120,7 +120,7 @@
                         <br>
                         <p>Verfügbar von {{entry.verfuegbar_anfang}} bis {{entry.verfuegbar_ende}}</p>
                         <p>
-                            <a href="{{ app.url_generator.generate('booking') }}">Buchen</a>
+                            <a href="booking/{{entry.id_ferienhaus}}?beginn={{value.beginn}}&ende={{value.ende}}&gaeste={{value.gaeste}}">Buchen</a>
                         </p>
                     </article>
                 </div>    

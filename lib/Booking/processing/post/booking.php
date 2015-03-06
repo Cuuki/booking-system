@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Response;
 
 include_once BOOKING_DIR . '/../validation.php';
-include_once BOOKING_DIR . '/processing/reserve.php';
+include_once BOOKING_DIR . '/processing/reservation.php';
 
 $postdata = array(
     'firstname' => $firstname->get( 'firstname' ),
@@ -12,6 +12,7 @@ $postdata = array(
     'plz' => $plz->get( 'plz' ),
     'ort' => $ort->get( 'ort' ),
     'straße' => $straße->get( 'straße' ),
+    'id_ferienhaus' =>  $id
 );
 
 $sanitizeBooking = sanitizeBooking( $postdata );
@@ -26,22 +27,49 @@ if( !empty( $invalidInput ) )
     ) ), 404 );
 }
 
-die;
-//$reservation = reserve( $postdata, $app );
+$getCustomer = getCustomer( $postdata, $app );
+$getContract = getContract( $getCustomer, $app );
 
-if ( !$reservation )
+//Prüfen ob Kunde schon existiert, wenn ja dann nur Reservieren, nicht Kunden speichern
+if( $getCustomer != false )
+{   
+    //prüfen ob schon gebucht hat. wenn ja dann kunde sagen er hat das schon gebucht
+    if( $getContract != false )
+    {
+        return new Response( $app['twig']->render( 'booking.twig', array(
+            'message' => 'Sie haben dieses Ferienhaus schon gebucht.',
+            'message_class' => 'alert alert-dismissable alert-danger',
+            'description' => 'Geben Sie Ihre Daten ein um das Ferienhaus zu buchen.',
+            'value' => $postdata
+        ) ), 404 );        
+    }
+    //Ansonsten Vertrag speichern
+    else
+    {
+        saveContract( $postdata['id_ferienhaus'], $urlParameters->query->all(), $getCustomer['id_kunde'], $app );          
+        return new Response( $app['twig']->render( 'booking.twig', array(
+            'message' => 'Ihre Daten wurden aufgenommen. Sie erhalten demnächst eine Rechnung per Mail.',
+            'message_class' => 'alert alert-dismissable alert-success',    
+            'description' => 'Geben Sie Ihre Daten ein um das Ferienhaus zu buchen.'
+        ) ), 201 );   
+    }
+}
+//Reservieren und Kunde speichern wenn funktion nicht false zurückgibt
+elseif( saveCustomer( $postdata, $app ) != false )
+{
+    saveContract( $postdata['id_ferienhaus'], $urlParameters->query->all(), $getCustomer['id_kunde'], $app );          
+    return new Response( $app['twig']->render( 'booking.twig', array(
+        'message' => 'Ihre Daten wurden aufgenommen. Sie erhalten demnächst eine Rechnung per Mail.',
+        'message_class' => 'alert alert-dismissable alert-success',    
+        'description' => 'Geben Sie Ihre Daten ein um das Ferienhaus zu buchen.'
+    ) ), 201 );
+}
+else
 {
     return new Response( $app['twig']->render( 'booking.twig', array(
-        'message' => 'Ihre Reservierung war leider nicht erfolgreich. Bitte versuchen Sie es erneut.',
+        'message' => 'Ihre Daten konnten nicht gespeichert werden. Versuchen Sie es erneut.',
         'message_class' => 'alert alert-dismissable alert-danger',
         'description' => 'Geben Sie Ihre Daten ein um das Ferienhaus zu buchen.',
         'value' => $postdata
     ) ), 404 );
 }
-
-return new Response( $app['twig']->render( 'booking.twig', array(
-    'message' => 'Ihre Reservierung war erfolgreich. Sie erhalten die Rechnung per Mail.',
-    'message_class' => 'alert alert-dismissable alert-success',    
-    'description' => 'Geben Sie Ihre Daten ein um das Ferienhaus zu buchen.',
-    'value' => $postdata
-) ), 201 );

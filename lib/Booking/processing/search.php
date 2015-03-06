@@ -5,7 +5,7 @@
  */
 function search( $postdata, $app )
 {
-    $select = 'SELECT bezeichnung, schlafzimmer, betten, preis, verfuegbar_anfang, '
+    $select = 'SELECT ferienhaus.id_ferienhaus, bezeichnung, schlafzimmer, betten, preis, verfuegbar_anfang, '
         . 'verfuegbar_ende, plz, ort, straße '
         . 'FROM ferienhaus '
         . 'JOIN objekt_adresse '
