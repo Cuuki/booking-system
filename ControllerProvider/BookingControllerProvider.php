@@ -17,13 +17,23 @@ class BookingControllerProvider implements ControllerProviderInterface
 
         $controllers->get( '/', function () use ( $app )
         {
-            return include_once BOOKING_DIR . '/processing/get/booking.php';
-        } )->bind( 'guestbook' );
+            return include_once BOOKING_DIR . '/processing/get/home.php';
+        } )->bind( 'home' );
 
         $controllers->post( '/', function ( Request $region, Request $ort, Request $beginn, Request $ende, Request $gaeste ) use ( $app )
         {   
-            return include_once BOOKING_DIR . '/processing/post/booking.php';
+            return include_once BOOKING_DIR . '/processing/post/home.php';
         } );
+        
+        $controllers->get( '/booking', function () use ( $app )
+        {
+            return include_once BOOKING_DIR . '/processing/get/booking.php';
+        } )->bind( 'booking' );
+
+        $controllers->post( '/booking', function () use ( $app )
+        {   
+            return include_once BOOKING_DIR . '/processing/post/booking.php';
+        } );  
 
         return $controllers;
     }

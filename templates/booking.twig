@@ -2,7 +2,7 @@
 
 {% block head %}
     {% block title %}
-        <title>Gästebuch</title>
+        <title>Homepage - HOLIDAYROOMS</title>
     {% endblock %}
 {% endblock %}
 
@@ -79,7 +79,7 @@
     </div>
 </div>
 <div class="row">    
-    <div class="col-lg-4 col-lg-offset-4">
+<div class="col-lg-12">        
         {% if message is defined %}
         <section class="well">
             <p class="alert alert-dismissable alert-danger text-center">
@@ -88,18 +88,31 @@
         </section>
         {% endif %}
         {% if output is defined and output != false %}
-        <section class="well">        
-            <p>
-                <strong>{{ output.bezeichnung }}</strong>
-            </p>
-            <p>Anzahl Schlafzimmer: {{ output.schlafzimmer }}</p>
-            <p>Anzahl Betten: {{ output.betten }}</p>
-            <p>Preis: {{output.preis}}€</p>
-            <p>PLZ: {{ output.objekt_plz }}</p>
-            <p>Adresse: {{ output.objekt_adresse }}</p>
-            <p>Verfügbar von {{output.verfuegbar_anfang}} bis {{output.verfuegbar_ende}}</p>
+        <section class="well">
+            <div class="row"> 
+                {% for entry in output %}
+                <div class="col-sm-4">   
+                    <article class="well">        
+                        <p>
+                            <strong>{{ entry.bezeichnung }}</strong>
+                        </p>
+                        <p>Anzahl Schlafzimmer: {{ entry.schlafzimmer }}</p>
+                        <p>Anzahl Betten: {{ entry.betten }}</p>
+                        <br>
+                        <p>Preis: {{entry.preis}}€</p>
+                        <br>
+                        <p>{{ entry.plz }} {{ entry.ort }}</p>
+                        <p>{{ entry.straße }} </p>
+                        <br>
+                        <p>Verfügbar von {{entry.verfuegbar_anfang}} bis {{entry.verfuegbar_ende}}</p>
+                        <p>
+                            <a href="{{ app.url_generator.generate('booking') }}">Buchen</a>
+                        </p>
+                    </article>
+                </div>    
+                {% endfor %}
+            </div>
         </section>
         {% endif %}
-    </div>
 </div>
 {% endblock %}

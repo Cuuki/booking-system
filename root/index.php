@@ -41,21 +41,21 @@ $app['session.storage.options'] = array(
     'lifetime' => 1800
 );
 
-$app->before( function () use ( $app )
-{
-    $getPath = $app['request_context']->getPathInfo();
+//$app->before( function () use ( $app )
+//{
+//    $getPath = $app['request_context']->getPathInfo();
 
     //Wenn Session null dann true und führe aus, wenn Session nicht null dann false und führe nicht aus
-    if ( !$app['session']->get( 'user' ) )
-    {
+//    if ( !$app['session']->get( 'user' ) )
+//    {
         // Wenn Pfad = auth/login dann nicht redirecten
-        if ( $getPath == '/ap/auth/login' || $getPath == '/bks/' )
-        {
-            return;
-        }
-        return $app->redirect( $app['url_generator']->generate( 'login' ) );
-    }
-} );
+//        if ( $getPath == '/ap/auth/login' || $getPath == '/bks/' )
+//        {
+//            return;
+//        }
+//        return $app->redirect( $app['url_generator']->generate( 'login' ) );
+//    }
+//} );
 
 // Loginsession starten
 $app['session']->start();
