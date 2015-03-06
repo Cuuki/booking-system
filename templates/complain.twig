@@ -27,7 +27,22 @@
                             {% endif %}
                         {% endif %}                             
                         </div>
-                    </div>                      
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <div class="form-control-wrapper">
+                                <label for="email" class="control-label booking-label">E-Mail</label>
+                                <input type="email" id="email" name="email" class="form-control text-center" value="{%if value is defined%}{{value.email}}{%endif%}" placeholder="E-Mail">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.email is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.email}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                              
+                        </div>                
+                    </div>                         
                     <div class="col-xs-12">
                         <div class="form-group booking-form">
                             <label for="beschreibung" class="control-label booking-label">Mängelbeschreibung</label>

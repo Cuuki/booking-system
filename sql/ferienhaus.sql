@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2015 at 05:43 PM
+-- Generation Time: Mar 06, 2015 at 06:53 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS `ferienhaus` (
   `verfuegbar_anfang` date NOT NULL,
   `verfuegbar_ende` date NOT NULL,
   PRIMARY KEY (`id_ferienhaus`),
-  UNIQUE KEY `id_ferienhaus_UNIQUE` (`id_ferienhaus`)
+  UNIQUE KEY `id_ferienhaus_UNIQUE` (`id_ferienhaus`),
+  UNIQUE KEY `bezeichnung` (`bezeichnung`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --

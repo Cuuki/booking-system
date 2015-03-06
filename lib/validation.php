@@ -46,6 +46,7 @@ function sanitizeComplain ( array $params )
     $data = array(
         // eingaben nach ungültigen Zeichen filtern
         "beschreibung" => trim( filter_var( $params["beschreibung"], FILTER_SANITIZE_STRING ) ),
+        "email" => filter_var( trim( $params["email"] ), FILTER_VALIDATE_EMAIL ),
         "bezeichnung" => trim( filter_var( $params["bezeichnung"], FILTER_SANITIZE_STRING ) )
     );
 
