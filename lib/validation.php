@@ -116,13 +116,17 @@ function getErrormessages ( $invalidInput )
                 $errorMessages[$value] = "Bitte geben Sie eine valide Region ein. Verwenden Sie keine Leer- oder Sonderzeichen.";
                 break;
 
-            case "ort":
-                $errorMessages[$value] = "Bitte geben Sie einen validen Ort. Verwenden Sie keine Leer- oder Sonderzeichen.";
-                break;
-
             case "gaeste":
                 $errorMessages[$value] = "Bitte geben Sie eine Nummer als Anzahl der Gäste ein.";
-                break;            
+                break;
+            
+            case "bezeichnung":
+                $errorMessages[$value] = "Bitte geben Sie eine valide Bezeichnung an. Verwenden Sie keine Leer- oder Sonderzeichen.";
+                break;
+
+            case "beschreibung":
+                $errorMessages[$value] = "Bitte geben Sie eine valide Beschreibung an. Verwenden Sie keine Leer- oder Sonderzeichen.";
+                break;               
         }
     }
 
