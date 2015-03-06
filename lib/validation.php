@@ -3,6 +3,21 @@
 /** 
  * @return array
  */
+function sanitizeSearch ( array $params )
+{
+    $data = array(
+        // eingaben nach ungültigen Zeichen filtern
+        "region" => trim( filter_var( $params["region"], FILTER_SANITIZE_STRING ) ),
+        "ort" => trim( filter_var( $params["ort"], FILTER_SANITIZE_STRING ) ),
+        "gaeste" => filter_var( trim( $params["gaeste"] ), FILTER_SANITIZE_NUMBER_INT ),
+    );
+    
+    return $data;
+}
+
+/** 
+ * @return array
+ */
 function sanitizeBooking ( array $params )
 {
     $data = array(
@@ -26,7 +41,7 @@ function sanitizeBooking ( array $params )
 /**
  * @return array
  */
-function validateForm ( array $params )
+function validate ( array $params )
 {
     // wenn vorher gefilterte Eingaben leer sein sollten oder false gib Array mit falschen Schlüssel zurück
     $invalidKeys = array();
@@ -77,6 +92,18 @@ function getErrormessages ( $invalidInput )
             case "straße":
                 $errorMessages[$value] = "Bitte geben Sie Ihre Straße und Hausnummer ein. Verwenden Sie keine Sonderzeichen.";
                 break;
+            
+            case "region":
+                $errorMessages[$value] = "Bitte geben Sie eine valide Region ein. Verwenden Sie keine Leer- oder Sonderzeichen.";
+                break;
+
+            case "ort":
+                $errorMessages[$value] = "Bitte geben Sie einen validen Ort. Verwenden Sie keine Leer- oder Sonderzeichen.";
+                break;
+
+            case "gaeste":
+                $errorMessages[$value] = "Bitte geben Sie eine Nummer als Anzahl der Gäste ein.";
+                break;            
         }
     }
 

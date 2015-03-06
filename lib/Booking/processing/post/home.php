@@ -2,6 +2,9 @@
 
 use Symfony\Component\HttpFoundation\Response;
 
+include_once BOOKING_DIR . '/../validation.php';
+include_once BOOKING_DIR . '/processing/search.php';
+
 $postdata = array(
     'region' => $region->get( 'region' ),
     'ort' => $ort->get( 'ort' ),
@@ -10,34 +13,28 @@ $postdata = array(
     'gaeste' => $gaeste->get( 'gaeste' )
 );
 
-$select = 'SELECT bezeichnung, schlafzimmer, betten, preis, verfuegbar_anfang, '
-        . 'verfuegbar_ende, plz, ort, straße '
-        . 'FROM ferienhaus '
-        . 'JOIN objekt_adresse '
-            . 'ON ferienhaus.id_ferienhaus = objekt_adresse.id_ferienhaus '
-        . 'WHERE region LIKE CONCAT( "%", ?, "%" ) '
-            . 'AND ort LIKE CONCAT( "%", ?, "%" ) '
-            . 'AND ? BETWEEN verfuegbar_anfang AND verfuegbar_ende '
-            . 'AND ? BETWEEN verfuegbar_anfang AND verfuegbar_ende '
-            . 'AND betten >= ?';
+$sanitizeSearch = sanitizeSearch( $postdata );
+$invalidInput = validate( $sanitizeSearch );
 
-$searchResults = $app['db']->fetchAll( $select, array(
-    $postdata['region'],
-    $postdata['ort'],    
-    $postdata['beginn'],
-    $postdata['ende'],
-    $postdata['gaeste']
-));
+if( !empty( $invalidInput ) )
+{
+    return new Response( $app['twig']->render( 'home.twig', array(
+        'errormessages' => getErrormessages( $invalidInput ),
+        'value' => $postdata
+    ) ), 404 );
+}
+
+$searchResults = search( $postdata, $app );
 
 if ( !$searchResults )
 {
-    return new Response( $app['twig']->render( 'booking.twig', array(
+    return new Response( $app['twig']->render( 'home.twig', array(
         'message' => 'Keine Ergebnisse gefunden.',
         'value' => $postdata
     ) ), 404 );
 }
 
-return new Response( $app['twig']->render( 'booking.twig', array(
+return new Response( $app['twig']->render( 'home.twig', array(
     'output' => $searchResults,
     'value' => $postdata
 ) ), 201 );
