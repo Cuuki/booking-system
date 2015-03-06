@@ -31,17 +31,19 @@ CREATE TABLE IF NOT EXISTS `maengelanzeige` (
   `beschreibung` text NOT NULL,
   `meldedatum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_kunde` int(11) NOT NULL,
+  `id_ferienhaus` int(11) NOT NULL,
   PRIMARY KEY (`id_maengel`),
   UNIQUE KEY `id_maengel_UNIQUE` (`id_maengel`),
-  KEY `fk_maengelanzeige_kunde1_idx` (`id_kunde`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  KEY `fk_maengelanzeige_kunde1_idx` (`id_kunde`),
+  KEY `fk_maengelanzeige_ferienhaus1_idx` (`id_ferienhaus`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `maengelanzeige`
 --
 
-INSERT INTO `maengelanzeige` (`id_maengel`, `beschreibung`, `meldedatum`, `id_kunde`) VALUES
-(1, 'Alles kacke hier!', '2015-03-05 15:58:05', 1);
+INSERT INTO `maengelanzeige` (`id_maengel`, `beschreibung`, `meldedatum`, `id_kunde`, `id_ferienhaus`) VALUES
+(1, 'Alles kacke hier!', '2015-03-05 15:58:05', 1, 1);
 
 --
 -- Constraints for dumped tables
@@ -51,7 +53,8 @@ INSERT INTO `maengelanzeige` (`id_maengel`, `beschreibung`, `meldedatum`, `id_ku
 -- Constraints for table `maengelanzeige`
 --
 ALTER TABLE `maengelanzeige`
-  ADD CONSTRAINT `fk_maengelanzeige_kunde1` FOREIGN KEY (`id_kunde`) REFERENCES `kunde` (`id_kunde`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_maengelanzeige_kunde1` FOREIGN KEY (`id_kunde`) REFERENCES `kunde` (`id_kunde`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_maengelanzeige_ferienhaus1` FOREIGN KEY (`id_ferienhaus`) REFERENCES `ferienhaus` (`id_ferienhaus`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

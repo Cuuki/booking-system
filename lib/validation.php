@@ -38,6 +38,25 @@ function sanitizeBooking ( array $params )
     return $data;
 }
 
+/** 
+ * @return array
+ */
+function sanitizeComplain ( array $params )
+{
+    $data = array(
+        // eingaben nach ungültigen Zeichen filtern
+        "beschreibung" => trim( filter_var( $params["beschreibung"], FILTER_SANITIZE_STRING ) ),
+        "bezeichnung" => trim( filter_var( $params["bezeichnung"], FILTER_SANITIZE_STRING ) )
+    );
+
+    if ( strlen( $data['beschreibung'] ) > 1000 )
+    {
+        $data['beschreibung'] = false;
+    }    
+    
+    return $data;
+}
+
 /**
  * @return array
  */

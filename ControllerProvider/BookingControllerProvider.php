@@ -25,6 +25,16 @@ class BookingControllerProvider implements ControllerProviderInterface
             return include_once BOOKING_DIR . '/processing/post/home.php';
         } );
         
+        $controllers->get( '/complaint', function () use ( $app )
+        {
+            return include_once BOOKING_DIR . '/processing/get/complain.php';
+        } )->bind( 'complaint' );
+
+        $controllers->post( '/complaint', function ( Request $beschreibung ) use ( $app )
+        {   
+            return include_once BOOKING_DIR . '/processing/post/complain.php';
+        } );        
+        
         $controllers->get( '/booking/{id}', function () use ( $app )
         {
             return include_once BOOKING_DIR . '/processing/get/booking.php';

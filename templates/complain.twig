@@ -1,0 +1,72 @@
+{% extends "base.twig" %}
+
+{% block head %}
+    {% block title %}
+        <title>Complain - HOLIDAYROOMS</title>
+    {% endblock %}
+{% endblock %}
+
+{% block header %}
+{% include "header.twig" %}
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <section id="home-well" class="well">
+            <fieldset id="booking-form">        
+                <form  action="" method="post" class="form-horizontal">
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="bezeichnung" class="control-label booking-label">Ferienhausbezeichnung</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="bezeichnung" name="bezeichnung" class="form-control text-center" value="{%if value is defined%}{{value.bezeichnung}}{%endif%}" placeholder="Ferienhausname">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.bezeichnung is defined %}
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.bezeichnung}}</strong>
+                            </p>          
+                            {% endif %}
+                        {% endif %}                             
+                        </div>
+                    </div>                      
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="beschreibung" class="control-label booking-label">Mängelbeschreibung</label>
+                            <div class="form-control-wrapper">
+                                <textarea class="form-control text-center" id="beschreibung" name="beschreibung" rows="10" cols="20" placeholder="Beschreibung des Mangels (max. 1000 Zeichen)">{% if value is defined %}{{value.beschreibung}}{% endif %}</textarea>
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.beschreibung is defined %}    
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.beschreibung}}</strong>
+                            </p>            
+                            {% endif %}  
+                        {% endif %}                              
+                        </div>
+                    </div> 
+                    <div class="col-md-1">            
+                        <div class="form-group booking-form">
+                            <button  id="home-button" class="btn btn-primary" type="submit">Absenden</button>
+                        </div>
+                    </div>
+                </form>           
+            </fieldset>
+            {% if message is defined %}
+            <p class="{{message_class}}">
+                <strong>{{message}}</strong>
+            </p>
+            {% endif %}
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
