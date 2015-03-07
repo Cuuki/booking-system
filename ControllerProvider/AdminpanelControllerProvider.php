@@ -14,29 +14,25 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
     public function connect ( Application $app )
     {
         // Dateien einbinden
-        include_once __DIR__ . '/../adminpanel/user/sudo-config.php';
+        include_once ADMIN_DIR . '/admin.php';
+        include_once ADMIN_DIR . '/sudo-config.php';
 
         $controllers = $app['controllers_factory'];
 
         $controllers->get( '/', function () use ( $app )
         {
-            return $app->redirect( 'user/dashboard/' );
-        } );
-
-        $controllers->get( 'user/', function () use ( $app )
-        {
-            return $app->redirect( 'dashboard/' );
+            return $app->redirect( $app['url_generator']->generate('dashboard') );
         } );
 
         $controllers->get( 'auth/', function () use ( $app )
         {
-            return $app->redirect( 'login' );
+            return $app->redirect( $app['url_generator']->generate('login') );
         } );
 
         //Dashboard 
-        $controllers->get( 'user/dashboard/', function () use ( $app )
+        $controllers->get( 'dashboard/', function () use ( $app )
         {
-            return include_once USER_DIR . '/dashboard/processing/get/processing_dashboard.php';
+            return include_once ADMIN_DIR . '/processing/get/dashboard.php';
         } )->bind( 'dashboard' );
 
         $this->bindAuth( $app, $controllers );
@@ -50,18 +46,18 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
         //Login        
         $controllers->get( 'auth/login', function () use ( $app )
         {
-            return include_once ROUTES_DIR . '/auth/processing/get/processing_login.php';
+            return include_once ADMIN_DIR . '/processing/get/login.php';
         } )->bind( 'login' );
 
         $controllers->post( 'auth/login', function ( Request $username, Request $password, Request $staylogged ) use ( $app )
         {
-            return include_once ROUTES_DIR . '/auth/processing/post/processing_login.php';
+            return include_once ADMIN_DIR . '/processing/post/login.php';
         } );
 
         // Logout
         $controllers->get( 'user/dashboard/logout', function () use ( $app )
         {
-            return include_once ROUTES_DIR . '/auth/processing/get/processing_logout.php';
+            return include_once ADMIN_DIR . '/processing/post/logout.php';
         } )->bind( 'logout' );
 
         return $controllers;
@@ -72,31 +68,15 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
         // Benutzer hinzufügen
         $controllers->get( 'user/dashboard/add', function () use ( $app )
         {
-            return include_once USER_DIR . '/dashboard/processing/get/processing_add.php';
-        } )->bind( 'add' );
+            return include_once ADMIN_DIR . '/processing/get/user_add.php';
+        } )->bind( 'user_add' );
 
         $controllers->post( 'user/dashboard/add', function ( Request $username, Request $useremail, Request $password ) use ( $app )
         {
-            return include_once USER_DIR . '/dashboard/processing/post/processing_add.php';
-        } );
-
-        // Benutzerdaten bearbeiten
-        $controllers->get( 'user/dashboard/update/', function ( Request $currentpage ) use ( $app )
-        {
-            return include_once USER_DIR . '/dashboard/display/display_update.php';
-        } )->bind( 'update' );
-
-        $controllers->get( 'user/dashboard/update/{id}', function ( $id ) use ( $app )
-        {
-            return include_once USER_DIR . '/dashboard/display/display_update_id.php';
-        } );
-
-        $controllers->post( 'user/dashboard/update/{id}', function ( $id, Request $username, Request $useremail, Request $password ) use ( $app )
-        {
-            return include_once USER_DIR . '/dashboard/processing/post/processing_update_id.php';
+            return include_once ADMIN_DIR . '/processing/post/user_add.php';
         } );
 
         return $controllers;
-    }
-
+    }    
+    
 }

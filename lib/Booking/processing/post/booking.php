@@ -12,7 +12,6 @@ $postdata = array(
     'plz' => $plz->get( 'plz' ),
     'ort' => $ort->get( 'ort' ),
     'straße' => $straße->get( 'straße' ),
-    'id_ferienhaus' =>  $id
 );
 
 $sanitizeBooking = sanitizeBooking( $postdata );
@@ -46,7 +45,7 @@ if( $getCustomer != false )
     //Ansonsten Vertrag speichern
     else
     {
-        saveContract( $postdata['id_ferienhaus'], $urlParameters->query->all(), $getCustomer['id_kunde'], $app );          
+        saveContract( $urlParameters->query->all()['id'], $urlParameters->query->all(), $getCustomer['id_kunde'], $app );          
         return new Response( $app['twig']->render( 'booking.twig', array(
             'message' => 'Ihre Daten wurden aufgenommen. Sie erhalten demnächst eine Rechnung per Mail.',
             'message_class' => 'alert alert-dismissable alert-success',    
@@ -57,7 +56,7 @@ if( $getCustomer != false )
 //Reservieren und Kunde speichern wenn funktion nicht false zurückgibt
 elseif( saveCustomer( $postdata, $app ) != false )
 {    
-    saveContract( $postdata['id_ferienhaus'], $urlParameters->query->all(), getCustomer( $postdata, $app )['id_kunde'], $app );          
+    saveContract( $urlParameters->query->all()['id'], $urlParameters->query->all(), getCustomer( $postdata, $app )['id_kunde'], $app );          
     return new Response( $app['twig']->render( 'booking.twig', array(
         'message' => 'Ihre Daten wurden aufgenommen. Sie erhalten demnächst eine Rechnung per Mail.',
         'message_class' => 'alert alert-dismissable alert-success',    

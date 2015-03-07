@@ -1,0 +1,55 @@
+<div class="col-sm-3 sidebar-offcanvas" id="sidebar">
+    <div class="well">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="{% if is_active_dashboard is defined and is_active_dashboard == true %}active{% endif %}">
+                <a href="{{ app.url_generator.generate('dashboard') }}">
+                    <i class="mdi-action-dashboard"></i> Übersicht
+                </a>
+            </li>
+            <li class="divider"><hr></li>
+            <li class="dropdown {% if is_active_usermanagement is defined and is_active_usermanagement == true %}active{% endif %}">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-target="#">
+                    <i class="mdi-action-list"></i> Benutzer
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ app.url_generator.generate('user_add') }}">
+                            <i class="mdi-content-add"></i> Hinzufügen
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{% if is_active_guestbook is defined and is_active_guestbook == true %}active{% endif %}">
+                <a href="">
+                    <i class="mdi-content-content-paste"></i> Rechnung
+                </a>
+            </li>              
+            <li class="{% if is_active_guestbook is defined and is_active_guestbook == true %}active{% endif %}">
+                <a href="">
+                    <i class="mdi-action-search"></i> Suchen
+                </a>
+            </li>          
+            <li class="divider"><hr></li>
+            <li class="dropdown {% if is_active_settings is defined and is_active_settings == true %}active{% endif %}">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-target="#">
+                    <i class="mdi-action-account-circle"></i> {{loggeduser}} 
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ app.url_generator.generate('logout') }}">
+                            <i class="mdi-navigation-cancel"></i> Ausloggen
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="divider"><hr></li>
+            <li>
+                <a href="#top">
+                    <i class="mdi-navigation-expand-less"></i> Nach oben
+                </a>
+            </li>            
+        </ul>
+    </div>
+</div>

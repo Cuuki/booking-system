@@ -35,12 +35,12 @@ class BookingControllerProvider implements ControllerProviderInterface
             return include_once BOOKING_DIR . '/processing/post/complain.php';
         } );        
         
-        $controllers->get( '/booking/{id}', function () use ( $app )
+        $controllers->get( '/booking', function () use ( $app )
         {
             return include_once BOOKING_DIR . '/processing/get/booking.php';
         } );
 
-        $controllers->post( '/booking/{id}', function ( $id, Request $urlParameters, Request $firstname, Request $lastname, Request $email, Request $plz, Request $ort, Request $straße ) use ( $app )
+        $controllers->post( '/booking', function ( Request $urlParameters, Request $firstname, Request $lastname, Request $email, Request $plz, Request $ort, Request $straße ) use ( $app )
         {   
             return include_once BOOKING_DIR . '/processing/post/booking.php';
         } );  

@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block head %}
+    {% block title %}
+        <title>Dashboard - Adminpanel</title>
+    {% endblock %}
+{% endblock %}
+
+{% block header %}
+    {% include "header_ap.twig" %}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="row row-offcanvas row-offcanvas-left">
+    {% include "sidebar.twig" %}
+    <div class="col-sm-7 col-sm-offset-1">
+        <div class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
+                <i class="mdi-action-view-list"></i> Menu
+            </button>
+        </div>
+        <ol class="breadcrumb">
+            <li>
+                <a href="javascript:void(0)">
+                    <i class="mdi-action-home"></i>
+                </a>
+            </li>
+            <li class="active">Übersicht</li>
+        </ol>
+        <section class="well">         
+            <h4>
+                <i class="mdi-action-favorite-outline"></i>
+                <strong> Wilkommen im Adminbereich!</strong>
+            </h4>
+            <p>Hier können Sie Benutzer und Beiträge verwalten.</p>
+        </section>
+        <section class="well">   
+            <h4>
+                <i class="mdi-action-query-builder"></i>
+                <strong> Eingeloggt seid:</strong>
+            </h4>
+            <p>{{loggedinsince}}</p>
+        </section>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+{% endblock %}

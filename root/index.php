@@ -6,7 +6,7 @@ ini_set( 'log_errors', 1 );
 // Dateien einbinden
 require_once __DIR__ . '/../vendor/autoload.php';
 include_once __DIR__ . '/../ControllerProvider/BookingControllerProvider.php';
-//include_once __DIR__ . '/../ControllerProvider/AdminpanelControllerProvider.php';
+include_once __DIR__ . '/../ControllerProvider/AdminpanelControllerProvider.php';
 
 $app = new Silex\Application();
 
@@ -35,27 +35,27 @@ $app->register( new Silex\Provider\DoctrineServiceProvider(), array(
 $app['debug'] = TRUE;
 
 $app->mount( '/bks', new Booking\BookingControllerProvider() );
-//$app->mount( '/ap', new Adminpanel\AdminpanelControllerProvider() );
+$app->mount( '/ap', new Adminpanel\AdminpanelControllerProvider() );
 
 $app['session.storage.options'] = array(
     'lifetime' => 1800
 );
 
-//$app->before( function () use ( $app )
-//{
-//    $getPath = $app['request_context']->getPathInfo();
+$app->before( function () use ( $app )
+{
+    $getPath = $app['request_context']->getPathInfo();
 
     //Wenn Session null dann true und führe aus, wenn Session nicht null dann false und führe nicht aus
-//    if ( !$app['session']->get( 'user' ) )
-//    {
+    if ( !$app['session']->get( 'user' ) )
+    {
         // Wenn Pfad = auth/login dann nicht redirecten
-//        if ( $getPath == '/ap/auth/login' || $getPath == '/bks/' )
-//        {
-//            return;
-//        }
-//        return $app->redirect( $app['url_generator']->generate( 'login' ) );
-//    }
-//} );
+        if ( $getPath == '/ap/auth/login' || $getPath == '/ap/dashboard/' || $getPath == '/bks/' || $getPath == '/bks/booking' || $getPath == '/bks/complaint' )
+        {
+            return;
+        }
+        return $app->redirect( $app['url_generator']->generate( 'login' ) );
+    }
+} );
 
 // Loginsession starten
 $app['session']->start();
