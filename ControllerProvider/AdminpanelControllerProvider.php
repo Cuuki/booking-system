@@ -57,7 +57,7 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
         // Logout
         $controllers->get( 'user/dashboard/logout', function () use ( $app )
         {
-            return include_once ADMIN_DIR . '/processing/post/logout.php';
+            return include_once ADMIN_DIR . '/processing/get/logout.php';
         } )->bind( 'logout' );
 
         return $controllers;
@@ -66,12 +66,12 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
     private function bindUser ( Application $app, $controllers )
     {
         // Benutzer hinzufügen
-        $controllers->get( 'user/dashboard/add', function () use ( $app )
+        $controllers->get( 'dashboard/add', function () use ( $app )
         {
             return include_once ADMIN_DIR . '/processing/get/user_add.php';
         } )->bind( 'user_add' );
 
-        $controllers->post( 'user/dashboard/add', function ( Request $username, Request $useremail, Request $password ) use ( $app )
+        $controllers->post( 'dashboard/add', function ( Request $username, Request $useremail, Request $password ) use ( $app )
         {
             return include_once ADMIN_DIR . '/processing/post/user_add.php';
         } );

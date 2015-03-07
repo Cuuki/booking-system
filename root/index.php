@@ -49,7 +49,7 @@ $app->before( function () use ( $app )
     if ( !$app['session']->get( 'user' ) )
     {
         // Wenn Pfad = auth/login dann nicht redirecten
-        if ( $getPath == '/ap/auth/login' || $getPath == '/ap/dashboard/' || $getPath == '/bks/' || $getPath == '/bks/booking' || $getPath == '/bks/complaint' )
+        if ( $getPath == '/ap/auth/login' || $getPath == '/bks/' || $getPath == '/bks/booking' || $getPath == '/bks/complaint' )
         {
             return;
         }

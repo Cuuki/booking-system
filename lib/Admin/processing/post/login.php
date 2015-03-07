@@ -9,8 +9,8 @@ $postdata = array(
 );
 
 // Daten aus Datenbank holen
-$logindata = getLogindata( $app['db'], $postdata['username'] );
-$hash = $logindata['password'];
+$logindata = getUserByName( $app['db'], $postdata['username'] );
+$hash = $logindata['passwort'];
 
 // mit Eingabe vergleichen, Authentifizierung
 if ( password_verify( $postdata['password'], $hash ) )

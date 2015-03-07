@@ -1,13 +1,13 @@
 <div class="col-sm-3 sidebar-offcanvas" id="sidebar">
     <div class="well">
         <ul class="nav nav-pills nav-stacked">
-            <li class="{% if is_active_dashboard is defined and is_active_dashboard == true %}active{% endif %}">
+            <li class="{% if is_active_dashboard is defined and is_active_dashboard == true %}activepill{% endif %}">
                 <a href="{{ app.url_generator.generate('dashboard') }}">
                     <i class="mdi-action-dashboard"></i> Übersicht
                 </a>
             </li>
             <li class="divider"><hr></li>
-            <li class="dropdown {% if is_active_usermanagement is defined and is_active_usermanagement == true %}active{% endif %}">
+            <li class="dropdown {% if is_active_usermanagement is defined and is_active_usermanagement == true %}activepill{% endif %}">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-target="#">
                     <i class="mdi-action-list"></i> Benutzer
                     <b class="caret"></b>
@@ -20,18 +20,18 @@
                     </li>
                 </ul>
             </li>
-            <li class="{% if is_active_guestbook is defined and is_active_guestbook == true %}active{% endif %}">
+            <li class="{% if is_active_rechnung is defined and is_active_rechnung == true %}activepill{% endif %}">
                 <a href="">
                     <i class="mdi-content-content-paste"></i> Rechnung
                 </a>
             </li>              
-            <li class="{% if is_active_guestbook is defined and is_active_guestbook == true %}active{% endif %}">
+            <li class="{% if is_active_suchen is defined and is_active_suchen == true %}activepill{% endif %}">
                 <a href="">
                     <i class="mdi-action-search"></i> Suchen
                 </a>
             </li>          
             <li class="divider"><hr></li>
-            <li class="dropdown {% if is_active_settings is defined and is_active_settings == true %}active{% endif %}">
+            <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-target="#">
                     <i class="mdi-action-account-circle"></i> {{loggeduser}} 
                     <b class="caret"></b>
