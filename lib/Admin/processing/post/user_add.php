@@ -8,8 +8,8 @@ $postdata = array(
     'password' => $password->get( 'password' )
 );
 
-$postdata = $this->sanitizeLogindata( $postdata );
-$invalidInput = validateForm( $postdata );
+$sanitizeUser = sanitizeUser( $postdata );
+$invalidInput = validate( $sanitizeUser );
 
 if ( !empty( $invalidInput ) )
 {
@@ -26,7 +26,7 @@ else
     foreach ( getAllUsers( $app['db'] ) as $user )
     {
         $usernames[] = $user['username'];
-        $useremails[] = $user['useremail'];
+        $useremails[] = $user['email'];
     }
 
     if ( in_array( $postdata['username'], $usernames, true ) || in_array( $postdata['useremail'], $useremails, true ) )
@@ -39,14 +39,8 @@ else
                     'submitvalue' => 'Anlegen'
                 ) ), 404 );
     }
-    elseif ( saveLogindata( $postdata, $app['db'] ) )
+    elseif ( saveUser( $postdata, $app['db'] ) )
     {
-        // $subject = 'Neu angelegter Benutzer';
-        // $emailmessage = 'Hallo ' . $postdata['username'] . ',' . PHP_EOL . 'Sie wurden von ' . $app['session']->get( 'user' ) .
-        // ' als neuer Benutzer für das Adminpanel hinzugefügt. Sie können sich nun mit folgendem Passwort anmelden: ' . $postdata['password'] .
-        // ' (Sie können das Passwort jederzeit auf Ihrem Profil ändern).' . PHP_EOL . 'Mit freundlichen Grüßen' . PHP_EOL . 'Ihr Service Team';                        
-        // Mail an angegebene E-Mail Adresse mit Logindaten
-        // mb_send_mail( $postdata['useremail'], $subject, $emailmessage );
 
         return new Response( $app['twig']->render( 'user_add.twig', array(
                     'message' => 'Der Benutzer wurde hinzugefügt.',

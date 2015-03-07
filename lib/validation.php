@@ -61,6 +61,20 @@ function sanitizeComplain ( array $params )
 /**
  * @return array
  */
+function sanitizeUser ( array $params )
+{
+    $data = array(
+        "username" => filter_var( trim( $params["username"] ), FILTER_SANITIZE_STRING ),
+        "useremail" => filter_var( trim( $params["useremail"] ), FILTER_VALIDATE_EMAIL ),
+        "password" => filter_var( trim( $params["password"] ), FILTER_SANITIZE_STRING )
+    );
+
+    return $data;
+}
+
+/**
+ * @return array
+ */
 function validate ( array $params )
 {
     // wenn vorher gefilterte Eingaben leer sein sollten oder false gib Array mit falschen Schlüssel zurück
@@ -127,7 +141,19 @@ function getErrormessages ( $invalidInput )
 
             case "beschreibung":
                 $errorMessages[$value] = "Bitte geben Sie eine valide Beschreibung an. Verwenden Sie keine Leer- oder Sonderzeichen.";
-                break;               
+                break;
+            
+            case "username":
+                $errorMessages[$value] = "Bitte geben Sie einen Usernamen ein. Lassen Sie das Feld nicht frei und verwenden Sie keine Sonderzeichen.";
+                break;
+
+            case "useremail":
+                $errorMessages[$value] = "Bitte geben Sie eine gültige E-Mail-Adresse ein. Sie sollte wie folgendes Beispiel aussehen: test@example.com";
+                break;
+
+            case "password":
+                $errorMessages[$value] = "Bitte geben Sie ein sicheres Passwort ein. Lassen Sie das Feld nicht frei.";
+                break;            
         }
     }
 

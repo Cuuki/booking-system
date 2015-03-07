@@ -32,7 +32,7 @@
             {% if message is defined %}
             <p class="{{message_type}}">{{ message }}</p>
             <p class="text-right">
-                <a href="{{ app.url_generator.generate('add') }}">Zurück</a>
+                <a href="{{ app.url_generator.generate('user_add') }}">Zurück</a>
             </p>
             {% endif %} 
             {% include "user_form.twig" %}
