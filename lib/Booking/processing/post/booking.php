@@ -2,7 +2,6 @@
 
 use Symfony\Component\HttpFoundation\Response;
 
-include_once BOOKING_DIR . '/../validation.php';
 include_once BOOKING_DIR . '/processing/reservation.php';
 
 $postdata = array(

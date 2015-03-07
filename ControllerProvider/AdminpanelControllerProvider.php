@@ -15,6 +15,7 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
     {
         // Dateien einbinden
         include_once ADMIN_DIR . '/admin.php';
+        include_once __DIR__ . '/../lib/validation.php';
         include_once ADMIN_DIR . '/sudo-config.php';
 
         $controllers = $app['controllers_factory'];

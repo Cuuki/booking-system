@@ -12,6 +12,8 @@ class BookingControllerProvider implements ControllerProviderInterface
 {
     public function connect ( Application $app )
     {
+        include_once __DIR__ . '/../lib/validation.php';
+        
         // creates a new controller based on the default route
         $controllers = $app['controllers_factory'];
 
