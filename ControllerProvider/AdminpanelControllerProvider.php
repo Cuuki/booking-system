@@ -38,22 +38,22 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
         
         $controllers->get( 'dashboard/invoice', function () use ( $app )
         {
-//            return include_once ADMIN_DIR . '/processing/get/invoice.php';
+            return include_once ADMIN_DIR . '/processing/get/invoice.php';
         } )->bind( 'invoice' );     
         
         $controllers->post( 'dashboard/invoice', function () use ( $app )
         {
-//            return include_once ADMIN_DIR . '/processing/post/invoice.php';
+            return include_once ADMIN_DIR . '/processing/post/invoice.php';
         } );        
 
         $controllers->get( 'dashboard/search', function () use ( $app )
         {
-//            return include_once ADMIN_DIR . '/processing/get/search.php';
+            return include_once ADMIN_DIR . '/processing/get/search.php';
         } )->bind( 'search' );     
         
         $controllers->post( 'dashboard/search', function () use ( $app )
         {
-//            return include_once ADMIN_DIR . '/processing/post/search.php';
+            return include_once ADMIN_DIR . '/processing/post/search.php';
         } );           
         
         $this->bindAuth( $app, $controllers );

@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block head %}
+    {% block title %}
+        <title>Benutzer hinzufügen - Adminpanel</title>
+    {% endblock %}
+{% endblock %}
+
+{% block headerap %}
+    {% include "header_ap.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row row-offcanvas row-offcanvas-left">
+    {% include "sidebar.twig" %}
+    <div class="col-sm-7 col-sm-offset-1">
+        <div class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
+                <i class="mdi-action-view-list"></i> Menu
+            </button>
+        </div>        
+        <ol class="breadcrumb">
+            <li>
+                <a href="javascript:void(0)">
+                    <span class="mdi-content-add"></span>
+                </a>
+            </li>
+            <li class="active">Hinzufügen</li>
+        </ol>
+        <section class="well">
+            <h3>{{headline}}</h3>
+            {% if message is defined %}
+            <p class="{{message_type}}">{{ message }}</p>
+            <p class="text-right">
+                <a href="{{ app.url_generator.generate('user_add') }}">Zurück</a>
+            </p>
+            {% endif %} 
+            {% include "user_form.twig" %}
+        </section>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+{% endblock %}
