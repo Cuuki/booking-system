@@ -2,9 +2,6 @@
 
 use Symfony\Component\HttpFoundation\Response;
 
-//Alle Mietverträge anzeigen und bei 'Rechnung erstellen' Weiter auf invoice id
-//Dann weitere Daten eintragen und weiter an kunden
-
 include_once ADMIN_DIR . '/pagination.php';
 $totalentries = totalEntries( $app['db'] );
 include_once ADMIN_DIR . '/processing/get/pagination.php';

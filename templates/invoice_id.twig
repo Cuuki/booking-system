@@ -22,20 +22,105 @@
         <ol class="breadcrumb">
             <li>
                 <a href="javascript:void(0)">
-                    <span class="mdi-content-add"></span>
+                    <span class="mdi-content-content-paste"></span>
                 </a>
             </li>
-            <li class="active">Hinzufügen</li>
+            <li class="active">Rechnung</li>
         </ol>
         <section class="well">
-            <h3>{{headline}}</h3>
+            <h3>Zahlungsinformationen</h3>
             {% if message is defined %}
             <p class="{{message_type}}">{{ message }}</p>
             <p class="text-right">
-                <a href="{{ app.url_generator.generate('user_add') }}">Zurück</a>
+                <a href="{{ app.url_generator.generate('invoice') }}">Zurück</a>
             </p>
-            {% endif %} 
-            {% include "user_form.twig" %}
+            {% endif %}
+            {% if message is not defined %} 
+            <fieldset>        
+                <form action="" method="post" class="form-horizontal">
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="beguenstigter" class="control-label booking-label">Begünstigter</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="beguenstigter" name="beguenstigter" class="form-control" value="{%if value is defined%}{{value.beguenstigter}}{%endif%}" placeholder="Name oder Firma">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.beguenstigter is defined %}    
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.beguenstigter}}</strong>
+                            </p>            
+                            {% endif %}  
+                        {% endif %}                              
+                        </div>
+                    </div>                       
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <div class="form-control-wrapper">
+                                <label for="iban" class="control-label booking-label">IBAN</label>
+                                <input type="iban" id="email" name="iban" class="form-control" value="{%if value is defined%}{{value.iban}}{%endif%}" placeholder="22 stellige IBAN">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.iban is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.iban}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                              
+                        </div>                
+                    </div>     
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="bic" class="control-label booking-label">BIC</label>
+                            <div class="form-control-wrapper">
+                                <input type="text" id="bic" name="bic" class="form-control" value="{%if value is defined%}{{value.bic}}{%endif%}" placeholder="Geschäftskennzeichen">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.bic is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.bic}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                            
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <div class="form-control-wrapper">                
+                                <label for="bank" class="control-label booking-label">Kreditinstitut</label>
+                                <input id="bank" type="text" name="bank" class="form-control" value="{%if value is defined%}{{value.bank}}{%endif%}" placeholder="Name der Bank">
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.bank is defined %}         
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.bank}}</strong>
+                            </p>
+                            {% endif %}
+                        {% endif %}                             
+                        </div>                
+                    </div>                    
+                    <div class="col-xs-12">
+                        <div class="form-group booking-form">
+                            <label for="verwendungszweck" class="control-label booking-label">Verwendungszweck</label>
+                            <div class="form-control-wrapper">
+                                <textarea class="form-control" id="verwendungszweck" name="verwendungszweck" rows="10" cols="20" placeholder="z.B. Kundennummer">{% if value is defined %}{{value.verwendungszweck}}{% endif %}</textarea>
+                            </div>
+                        {% if errormessages is defined and errormessages is not null %}
+                            {% if errormessages.verwendungszweck is defined %}    
+                            <p class="alert alert-dismissable alert-danger">
+                                <strong>{{errormessages.verwendungszweck}}</strong>
+                            </p>            
+                            {% endif %}  
+                        {% endif %}                              
+                        </div>
+                    </div>                 
+                    <div class="form-group">
+                        <div class="col-lg-12">            
+                            <button class="btn btn-primary" type="submit">Rechnung an Kunden senden</button>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+            {% endif %}
         </section>
     </div>
     <div class="col-sm-1"></div>

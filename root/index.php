@@ -34,6 +34,8 @@ $app->register( new Silex\Provider\DoctrineServiceProvider(), array(
 
 $app['debug'] = TRUE;
 
+mb_internal_encoding("UTF-8");
+
 $app->mount( '/bks', new Booking\BookingControllerProvider() );
 $app->mount( '/ap', new Adminpanel\AdminpanelControllerProvider() );
 
