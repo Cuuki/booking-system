@@ -2,7 +2,7 @@
 
 {% block head %}
     {% block title %}
-        <title>Benutzer hinzufügen - Adminpanel</title>
+        <title>Rechnung - Adminpanel</title>
     {% endblock %}
 {% endblock %}
 
@@ -18,25 +18,64 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
                 <i class="mdi-action-view-list"></i> Menu
             </button>
-        </div>        
+        </div>			
         <ol class="breadcrumb">
             <li>
                 <a href="javascript:void(0)">
-                    <span class="mdi-content-add"></span>
+                    <span class="mdi-action-delete"></span>
                 </a>
             </li>
-            <li class="active">Hinzufügen</li>
+            <li class="active">Rechnung</li>
         </ol>
         <section class="well">
-            <h3>{{headline}}</h3>
+            <h3>Mietverträge:</h3>        
             {% if message is defined %}
-            <p class="{{message_type}}">{{ message }}</p>
-            <p class="text-right">
-                <a href="{{ app.url_generator.generate('user_add') }}">Zurück</a>
-            </p>
-            {% endif %} 
-            {% include "user_form.twig" %}
+            <p class="{{message_type}}">{{message}}</p>
+                <p class="text-right">
+                    <a href="{{ app.url_generator.generate('invoice') }}">Zurück</a>
+                </p>
+            {% endif %}
+            {% if leases == false %}
+            <p>Keine Mietverträge vorhanden!</p>
+            {% endif %}           
         </section>
+        {% if message is not defined %}
+            {% for lease in leases %}
+            <article class="well">
+                <h4>
+                    <strong>Anfang:</strong> {{ lease.beginn }}
+                </h4>
+                <p>
+                    <strong>Ende:</strong> {{ lease.ende }}
+                </p>
+                <p>
+                    <strong>Name Ferienhaus:</strong> {{ lease.bezeichnung }}
+                </p>
+                <p>
+                    <strong>Name Kunde:</strong> {{ lease.vorname }} {{ lease.nachname }}
+                </p>           
+                <p>
+                    <a href="{{ app.url_generator.generate('invoice') }}/{{ lease.id_mietvertrag }}?id_ferienhaus={{ lease.id_ferienhaus }}&?id_kunde={{ lease.id_kunde }}">Rechnungsdaten eingeben</a>
+                </p>
+            </article>
+            {% endfor %}
+            {% if leases == true %}            
+                {% if lastpage != firstpage %}
+                <div class="well visible-lg">
+                    {% include "pagination_lg.twig" %}
+                </div>
+                <div class="well visible-md">
+                    {% include "pagination_md.twig" %}
+                </div>
+                <div class="well visible-sm">
+                    {% include "pagination_sm.twig" %}
+                </div>
+                <div class="well visible-xs">
+                    {% include "pagination_xs.twig" %}
+                </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
     </div>
     <div class="col-sm-1"></div>
 </div>
