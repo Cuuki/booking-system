@@ -34,8 +34,6 @@ $app->register( new Silex\Provider\DoctrineServiceProvider(), array(
 
 $app['debug'] = TRUE;
 
-mb_internal_encoding("UTF-8");
-
 $app->mount( '/bks', new Booking\BookingControllerProvider() );
 $app->mount( '/ap', new Adminpanel\AdminpanelControllerProvider() );
 
@@ -61,6 +59,8 @@ $app->before( function () use ( $app )
 
 // Loginsession starten
 $app['session']->start();
+
+mb_internal_encoding("UTF-8");
 
 // Letzte Aktivität in der Session
 $sessionLastUsed = $app['session']->getMetadataBag()->getLastUsed();

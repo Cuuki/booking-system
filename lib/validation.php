@@ -75,6 +75,22 @@ function sanitizeUser ( array $params )
 /**
  * @return array
  */
+function sanitizeBankdata ( array $params )
+{
+    $data = array(
+        "beguenstigter" => filter_var( trim( $params["beguenstigter"] ), FILTER_SANITIZE_STRING ),
+        "iban" => filter_var( trim( $params["iban"] ), FILTER_SANITIZE_STRING ),
+        "bic" => filter_var( trim( $params["bic"] ), FILTER_SANITIZE_STRING ),
+        "bank" => filter_var( trim( $params["bank"] ), FILTER_SANITIZE_STRING ),
+        "verwendungszweck" => filter_var( trim( $params["verwendungszweck"] ), FILTER_SANITIZE_STRING )
+    );
+
+    return $data;
+}
+
+/**
+ * @return array
+ */
 function validate ( array $params )
 {
     // wenn vorher gefilterte Eingaben leer sein sollten oder false gib Array mit falschen Schlüssel zurück
@@ -153,7 +169,27 @@ function getErrormessages ( $invalidInput )
 
             case "password":
                 $errorMessages[$value] = "Bitte geben Sie ein sicheres Passwort ein. Lassen Sie das Feld nicht frei.";
-                break;            
+                break;    
+            
+            case "beguenstigter":
+                $errorMessages[$value] = "Bitte geben Sie den Namen des Begünstigten/Firma ein. Lassen Sie das Feld nicht frei.";
+                break;  
+            
+            case "iban":
+                $errorMessages[$value] = "Bitte geben Sie eine valide IBAN (22 stellig) ein. Beispiel: DE21301204000000015228";
+                break;  
+            
+            case "bic":
+                $errorMessages[$value] = "Bitte geben Sie eine valide BIC ein. Beispiel: BYLADEM1HOS";
+                break; 
+            
+            case "bank":
+                $errorMessages[$value] = "Bitte geben Sie den Namen der Bank ein. Lassen Sie das Feld nicht frei.";
+                break;  
+            
+            case "verwendungszweck":
+                $errorMessages[$value] = "Bitte geben Sie einen Verwendungszweck an. Lassen Sie das Feld nicht frei.";
+                break;
         }
     }
 

@@ -34,35 +34,12 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
         $controllers->get( 'dashboard/', function () use ( $app )
         {
             return include_once ADMIN_DIR . '/processing/get/dashboard.php';
-        } )->bind( 'dashboard' );
-        
-        $controllers->get( 'dashboard/invoice', function ( Request $currentpage ) use ( $app )
-        {
-            return include_once ADMIN_DIR . '/processing/get/invoice.php';
-        } )->bind( 'invoice' );     
-        
-        $controllers->get( 'dashboard/invoice/{id}', function () use ( $app )
-        {
-            return include_once ADMIN_DIR . '/processing/get/invoice_id.php';
-        } );             
-        
-        $controllers->post( 'dashboard/invoice/{id}', function () use ( $app )
-        {
-            return include_once ADMIN_DIR . '/processing/post/invoice_id.php';
-        } );        
-
-        $controllers->get( 'dashboard/search', function () use ( $app )
-        {
-            return include_once ADMIN_DIR . '/processing/get/search.php';
-        } )->bind( 'search' );     
-        
-        $controllers->post( 'dashboard/search', function () use ( $app )
-        {
-            return include_once ADMIN_DIR . '/processing/post/search.php';
-        } );           
+        } )->bind( 'dashboard' );             
         
         $this->bindAuth( $app, $controllers );
         $this->bindUser( $app, $controllers );
+        $this->bindInvoice( $app, $controllers );
+        $this->bindSearch( $app, $controllers );
 
         return $controllers;
     }
@@ -103,6 +80,41 @@ class AdminpanelControllerProvider implements ControllerProviderInterface
         } );
 
         return $controllers;
-    }    
+    }  
+    
+    private function bindInvoice ( Application $app, $controllers )
+    {
+        $controllers->get( 'dashboard/invoice', function ( Request $currentpage ) use ( $app )
+        {
+            return include_once ADMIN_DIR . '/processing/get/invoice.php';
+        } )->bind( 'invoice' );     
+        
+        $controllers->get( 'dashboard/invoice/{id}', function () use ( $app )
+        {
+            return include_once ADMIN_DIR . '/processing/get/invoice_id.php';
+        } );             
+        
+        $controllers->post( 'dashboard/invoice/{id}', function ( $id, Request $urlParameters, Request $beguenstigter, Request $iban, Request $bic, Request $bank, Request $verwendungszweck ) use ( $app )
+        {
+            return include_once ADMIN_DIR . '/processing/post/invoice_id.php';
+        } ); 
+
+        return $controllers;
+    }   
+    
+    private function bindSearch ( Application $app, $controllers )
+    {
+        $controllers->get( 'dashboard/search', function () use ( $app )
+        {
+            return include_once ADMIN_DIR . '/processing/get/search.php';
+        } )->bind( 'search' );     
+        
+        $controllers->post( 'dashboard/search', function () use ( $app )
+        {
+            return include_once ADMIN_DIR . '/processing/post/search.php';
+        } );     
+
+        return $controllers;
+    }       
     
 }

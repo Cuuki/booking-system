@@ -55,7 +55,7 @@
                     <strong>Name Kunde:</strong> {{ lease.vorname }} {{ lease.nachname }}
                 </p>           
                 <p>
-                    <a href="{{ app.url_generator.generate('invoice') }}/{{ lease.id_mietvertrag }}?id_ferienhaus={{ lease.id_ferienhaus }}&?id_kunde={{ lease.id_kunde }}">Rechnungsdaten eingeben</a>
+                    <a href="{{ app.url_generator.generate('invoice') }}/{{ lease.id_mietvertrag }}?id_ferienhaus={{ lease.id_ferienhaus }}&id_kunde={{ lease.id_kunde }}">Rechnungsdaten eingeben</a>
                 </p>
             </article>
             {% endfor %}
