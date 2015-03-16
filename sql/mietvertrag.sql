@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2015 at 05:03 PM
+-- Generation Time: Mar 16, 2015 at 11:40 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -34,16 +34,18 @@ CREATE TABLE IF NOT EXISTS `mietvertrag` (
   `id_kunde` int(11) NOT NULL,
   PRIMARY KEY (`id_mietvertrag`),
   UNIQUE KEY `id_mietvertrag_UNIQUE` (`id_mietvertrag`),
+  UNIQUE KEY `id_ferienhaus_id_kunde_UNIQUE` (`id_kunde`,`id_ferienhaus`),
   KEY `fk_miervertrag_ferienhaus1_idx` (`id_ferienhaus`),
   KEY `fk_miervertrag_kunde1_idx` (`id_kunde`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `mietvertrag`
 --
 
 INSERT INTO `mietvertrag` (`id_mietvertrag`, `beginn`, `ende`, `id_ferienhaus`, `id_kunde`) VALUES
-(1, '2015-03-08', '2015-03-12', 1, 1);
+(1, '2015-03-08', '2015-03-12', 2, 1),
+(12, '2015-03-11', '2015-03-24', 1, 1);
 
 --
 -- Constraints for dumped tables

@@ -34,19 +34,17 @@ CREATE TABLE IF NOT EXISTS `kunde` (
   `plz` int(11) NOT NULL,
   `ort` varchar(255) NOT NULL,
   `straße` varchar(255) NOT NULL,
-  `id_ferienhaus` int(11) NOT NULL,
   PRIMARY KEY (`id_kunde`),
   UNIQUE KEY `id_kunde_UNIQUE` (`id_kunde`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  KEY `fk_kunde_ferienhaus1_idx` (`id_ferienhaus`)
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `kunde`
 --
 
-INSERT INTO `kunde` (`id_kunde`, `vorname`, `nachname`, `email`, `plz`, `ort`, `straße`, `id_ferienhaus`) VALUES
-(1, 'Patrick', 'Söllner', 'soellner.patrick95@gmail.com', 91341, 'Rotterdam', 'Am Oldberg 2', 1);
+INSERT INTO `kunde` (`id_kunde`, `vorname`, `nachname`, `email`, `plz`, `ort`, `straße`) VALUES
+(1, 'Patrick', 'Söllner', 'soellner.patrick95@gmail.com', 91341, 'Rotterdam', 'Am Oldberg 2');
 
 --
 -- Constraints for dumped tables

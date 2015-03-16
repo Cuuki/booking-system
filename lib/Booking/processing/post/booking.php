@@ -27,7 +27,7 @@ if( !empty( $invalidInput ) )
 }
 
 $getCustomer = getCustomer( $postdata, $app );
-$getContract = getContract( $getCustomer, $app );
+$getContract = getContract( $postdata['id_ferienhaus'], $getCustomer, $app );
 
 //Prüfen ob Kunde schon existiert, wenn ja dann nur Reservieren, nicht Kunden speichern
 if( $getCustomer != false )

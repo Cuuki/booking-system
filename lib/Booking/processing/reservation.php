@@ -14,7 +14,7 @@ function getCustomer ( $customerdata, $app )
 function saveCustomer ( $params, $app )
 {
     $insert = 'INSERT INTO
-                    kunde(vorname, nachname, email, plz, ort, straße, id_ferienhaus)
+                    kunde(vorname, nachname, email, plz, ort, straße)
                 VALUES
                 (
                     :firstname,
@@ -22,8 +22,7 @@ function saveCustomer ( $params, $app )
                     :email,
                     :zip,
                     :city,
-                    :street,
-                    :id
+                    :street
                 )';
 
     return $app['db']->executeQuery( $insert, array(
@@ -32,19 +31,19 @@ function saveCustomer ( $params, $app )
                 'email' => $params["email"],
                 'zip' => $params["plz"],
                 'city' => $params["ort"],
-                'street' => $params["straße"],
-                'id' => $params["id_ferienhaus"]     
+                'street' => $params["straße"]   
             ) );    
 }
 
-function getContract ( $customerdata, $app )
+function getContract ( $id, $customerdata, $app )
 {
-    $select = 'SELECT * FROM mietvertrag JOIN kunde ON mietvertrag.id_ferienhaus = kunde.id_ferienhaus WHERE email = ? AND vorname = ? AND nachname = ?';
-
+    $select = 'SELECT * FROM mietvertrag JOIN kunde ON mietvertrag.id_kunde = kunde.id_kunde WHERE email = ? AND vorname = ? AND nachname = ? AND id_ferienhaus = ?';
+    
     return $app['db']->fetchAssoc( $select, array( 
         $customerdata['email'], 
-        $customerdata['vorname'], 
-        $customerdata['nachname'] 
+        $customerdata['vorname'],
+        $customerdata['nachname'],
+        $id
     ) ); 
 }
 
