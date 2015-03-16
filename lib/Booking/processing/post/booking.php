@@ -11,6 +11,7 @@ $postdata = array(
     'plz' => $plz->get( 'plz' ),
     'ort' => $ort->get( 'ort' ),
     'straße' => $straße->get( 'straße' ),
+    'id_ferienhaus' => $urlParameters->query->all()['id']
 );
 
 $sanitizeBooking = sanitizeBooking( $postdata );
