@@ -3,7 +3,8 @@
         "silex/silex": "1.2.1",
         "twig/twig": "~1.0",
         "doctrine/orm": "2.3.6",
-        "palma/DoctrineORMServiceProvider": "1.0.*@dev"
+        "palma/DoctrineORMServiceProvider": "1.0.*@dev",
+        "symfony/validator": "2.7.*@dev"
     },
     "minimum-stability": "dev",
     "autoload": {
